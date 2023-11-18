@@ -35,12 +35,16 @@ When designing libraries or other sets of DNA sequences with lots of homology sh
 
 #### Minimize Complexity
 
-If you have sequences that contain difficult to synthesize regions, such as repeats, hairpins, extremely high and extremely low GC regions, you can use this design type to help minimize synthesis issues. By default complexity minimized designs are done using gapped designs. There are two “Minimize Complexity” specific parameters that allow the user additional control over this design type: “Min Z-Score Cutoff” and “Temperature (C)”. The z-score cut-off is used to determine when an oligo pairing free energy is decidedly an outlier, with lower (more negative) values filtering out more pairs. The temperature should be consistent with the temperature of your annealing step in assembly. 
+If you have sequences that contain difficult to synthesize regions, such as repeats, hairpins, extremely high and extremely low GC regions, you can use this design type to help minimize synthesis issues. By default complexity minimized designs are done using gapped designs. There are two “Minimize Complexity” specific parameters that allow the user additional control over this design type: “Min Z-Score Cutoff”, “Optimize Overlap TMs”, “Temperature (C)”, and "Custom Cuts File". 
+* The z-score cut-off is used to determine when an oligo pairing free energy is decidedly an outlier, with lower (more negative) values filtering out more pairs.
+* Oligo overlaps can be TM optimized so that they have near identical melting temperatures.
+* This temperature in degrees Celsius should be consistent with the temperature of your annealing step in assembly.
+* Additionally there is an option to upload a custom cuts file that allows you to specify specific cut positions for each sequence, where a cut position is defined as either the 3p end or the 5p end of an oligo. This can be useful for ensuring that a oligos can split, or combine, some known complex region. The format of the custom cuts file can be seen in the example link where each line corresponds to a sequence id in the set of fasta files. Only the sequences you wish to specify custom cuts for need to be included here.
 
 
 #### Gapped Design
 
-This design type allows for having gaps between adjacent 5p and 3p oligos. This reduces the number of DNA bases required to synthesize a given sequence by allowing the polymerase step to fill in the missing regions during extension phases in the assembly process. There are two “Gapped Design” specific parameters that allow the user additional control over this design type: “Optimize Overlap TMs” and “Temperature (C)”. These indicate whether to optimize the overlaps for the indicated temperature of the annealing step in assembly. 
+This design type allows for having gaps between adjacent 5p and 3p oligos. This reduces the number of DNA bases required to synthesize a given sequence by allowing the polymerase step to fill in the missing regions during extension phases in the assembly process. There are three “Gapped Design” specific parameters that allow the user additional control over this design type: “Optimize Overlap TMs”, “Temperature (C)”, and "Custom Cuts File". See above for the description of these parameters.  
 
 
 #### Naive Design
