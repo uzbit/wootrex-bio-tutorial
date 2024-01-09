@@ -2,10 +2,11 @@
 # Homology Path Tutorial
 
 
-### Intro
+## Intro
 
 Welcome to Homology Path, a software suite designed to help you optimize your DNA based workflows and experiments. Depending on your experiment parameters, there are several ways to flow your data through this system. Let's start with a basic example: Oligo Design. 
 
+## Oligo Design
 
 ### Basic Oligo Design
 
@@ -51,4 +52,16 @@ This design type allows for having gaps between adjacent 5p and 3p oligos. This 
 
 This design type creates a basic oligo design with no optimizations or gaps. Oligo recycling is still performed where possible.
 
- 
+## Sequence Complexity
+
+Some DNA sequences of interest may contain characteristics that will cause a naive design and assembly to fail synthesis. Common causes are repeat regions, too high or too low GC content, or hairpins for example. These often result in truncated product, concatamers, or no product at all. Here, we term these types of sequence content 'complexity', in order to describe their affect on sequence synthesis difficulty. Using the Sequence Complexity tab, you can submit multiple DNA sequences for complexity assessment. Below is an example sequence showing all types of complexity that are assessed. 
+
+![Sequence Complexity Example](https://user-images.githubusercontent.com/2830915/207479837-17bea843-9a36-4dbd-905b-79120fe5bf03.png)
+
+From top to bottom the types of complexity are:
+* Interspersed repeat regions - shown in light green, these are regions that share homology with each other and are likely to cause mis-annealing events during oligo assembly and PCR.
+* Palindromic repeat regions - shown in yellow, these are regions that could cause hairpin formations and are likely to cause oligos to become unavailable for expected annealing.
+* Low and high GC regions - shown in light blue and light red respectively, these are stretches of 40bp that have at most 30% (low) or at least 70% (high) GC content. High GC regions can cause issues with oligos finding their intended overlaps.
+* Free energy self pair - shown in dark red, these are regions where a designed oligo has a free energy of annealing with itself (ΔG) that lies outside the z-score cutoff for the population of other oligos with themselves. 
+* Free energy disjoint pair - shown in dark green, these are regions where the two indicated designed oligos have a free energy (ΔG) of annealing with each other that lies outside the z-score cutoff for the population of all oligo pairs that are not self or intended overlap pairs.
+* Free energy overlap pair - shown in dark blue, these are regions where the two indicated designed oligos have a free energy (ΔG) of annealing with each other that lies outside the z-score cutoff for the population of all intended overlapping oligo pairs. These are oligos that are intended to overlap via the design and that their free energy was sufficiently low, such that the intended anneling may not occur. This complexity type is not shown in the example above.
