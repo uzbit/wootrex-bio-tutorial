@@ -37,10 +37,10 @@ When designing libraries or other sets of DNA sequences with lots of homology sh
 #### Minimize Complexity
 
 If you have sequences that contain difficult to synthesize regions, such as repeats, hairpins, extremely high and extremely low GC regions, you can use this design type to help minimize synthesis issues. By default complexity minimized designs are done using gapped designs. There are two “Minimize Complexity” specific parameters that allow the user additional control over this design type: “Min Z-Score Cutoff”, “Optimize Overlap TMs”, “Temperature (C)”, and "Custom Cuts File". 
-* The z-score cut-off is used to determine when an oligo pairing free energy is decidedly an outlier, with lower (more negative) values filtering out more pairs.
-* Oligo overlaps can be TM optimized so that they have near identical melting temperatures.
-* This temperature in degrees Celsius should be consistent with the temperature of your annealing step in assembly.
-* Additionally there is an option to upload a custom cuts file that allows you to specify specific cut positions for each sequence, where a cut position is defined as either the 3p end or the 5p end of an oligo. This can be useful for ensuring that a oligos can split, or combine, some known complex region. The format of the custom cuts file can be seen in the example link where each line corresponds to a sequence id in the set of fasta files. Only the sequences you wish to specify custom cuts for need to be included here.
+* Min Z-Score Cutoff - used to determine when an oligo pairing free energy is decidedly an outlier, with lower (more negative) values filtering out more pairs.
+* Optimize Overlap TMs - oligo overlaps can be TM optimized so that they have near identical melting temperatures.
+* Temperature (C) - this temperature in degrees Celsius should be consistent with the temperature of your annealing step in assembly.
+* Input Custom Cuts File - additionally there is an option to upload a custom cuts file that allows you to specify specific cut positions for each sequence, where a cut position is defined as either the 3p end or the 5p end of an oligo. This can be useful for ensuring that a oligos can split, or combine, some known complex region. The format of the custom cuts file can be seen in the example link where each line corresponds to a sequence id in the set of fasta files. Only the sequences you wish to specify custom cuts for need to be included here.
 
 
 #### Gapped Design
@@ -84,10 +84,23 @@ At the moment, there are two options to work around sequence complexity.
 
 ## Sequence Permutation Generator
 
-If you're designing libraries of DNA with variation across a specific sequence of interest, you may have already used Oligo Design to save on oligo costs by recycling oligos. As it turns out, some designs allow for creation of novel sequences to assay using oligos that you've already designed. This is where Sequence Permuation Generator comes in. Given a library design, you can submit that excel file, along with a list of sequence id's in that design file, to create a new set of unique sequences to assay using the same batch of oligos! We term this "oligo mining". It allows you to extract more value out of library oligo designs that you already ordered or intend to order. 
+If you're designing libraries of DNA with variation across a specific sequence of interest, you may have already used Oligo Design to save on oligo costs by recycling oligos. As it turns out, some designs allow for creation of novel sequences to assay using oligos that you've already designed. This is where Sequence Permuation Generator comes in. Given a library design, you can submit that excel file, along with a list of sequence id's in that design file, to create a new set of unique sequences to assay using the same batch of oligos! We term this "oligo mining". It allows you to extract additional value out of library oligo designs that you already ordered or intend to order. 
 
-![Crank Out Libraries Like A Boss](https://user-images.githubusercontent.com/2830915/207479837-17bea843-9a36-4dbd-905b-79120fe5bf03.png)
+![Crank Out Libraries Like A Boss](https://github.com/uzbit/wootrex-bio-tutorial/assets/2830915/8276736e-9d31-4278-9966-8b979dc77648)
 
 ### Sequence Permutation Generator Parameters
+
+* Input Design File(s) - one or more design excel files produced by Oligo Design containing the oligos and sequences you would like to mine for additional value.
+* Permutation Design Name - designate a new name for the unique set of sequence permutations.
+* Sequence Id List - this is the set of sequences that you'd like to mine oligos from in order to create new sequences. Commonly, people choose sequences with hits showing promise from assays already performed.
+* Subsample Population - if the number of potential sequences generated is too high, use this parameter to evenly subsample the population generated.
+
+The output of an SPG job will be a new design file containing the plate mapping information needed to create the new sequences.
+
+## Sequence Design
+
+
+
+
 
 
