@@ -84,6 +84,10 @@ At the moment, there are two options to work around sequence complexity.
 
 ## Sequence Permutation Generator
 
+If you're designing libraries of DNA with variation across a specific sequence of interest, you may have already used Oligo Design to save on oligo costs by recycling oligos. As it turns out, some designs allow for creation of novel sequences to assay using oligos that you've already designed. This is where Sequence Permuation Generator comes in. Given a library design, you can submit that excel file, along with a list of sequence id's in that design file, to create a new set of unique sequences to assay using the same batch of oligos! We term this "oligo mining". It allows you to extract more value out of library oligo designs that you already ordered or intend to order. 
 
+![Crank Out Libraries Like A Boss](https://user-images.githubusercontent.com/2830915/207479837-17bea843-9a36-4dbd-905b-79120fe5bf03.png)
+
+### Sequence Permutation Generator Parameters
 
 
