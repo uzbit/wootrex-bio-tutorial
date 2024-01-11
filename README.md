@@ -62,6 +62,28 @@ From top to bottom the types of complexity are:
 * Interspersed repeat regions - shown in light green, these are regions that share homology with each other and are likely to cause mis-annealing events during oligo assembly and PCR.
 * Palindromic repeat regions - shown in yellow, these are regions that could cause hairpin formations and are likely to cause oligos to become unavailable for expected annealing.
 * Low and high GC regions - shown in light blue and light red respectively, these are stretches of 40bp that have at most 30% (low) or at least 70% (high) GC content. High GC regions can cause issues with oligos finding their intended overlaps.
-* Free energy self pair - shown in dark red, these are designed oligos that have a free energy of annealing with itself (ΔG) that lies outside the z-score cutoff for the population of other oligos with themselves. 
-* Free energy disjoint pair - shown in dark green, these are designed oligos where the two indicated oligos have a free energy (ΔG) of annealing with each other that lies outside the z-score cutoff for the population of all oligo pairs that are not self or intended overlap pairs.
-* Free energy overlap pair - shown in dark blue, these are designed oligos where the two indicated oligos have a free energy (ΔG) of annealing with each other that lies outside the z-score cutoff for the population of all intended overlapping oligo pairs. These are oligos that are intended to overlap via the design and that their free energy was sufficiently low, such that the intended anneling may not occur. This complexity type is not shown in the example above.
+* Complexity Free Energy self pair - shown in dark red, these are designed oligos that have a free energy of annealing with itself (ΔG) that lies outside the z-score cutoff for the population of other oligos with themselves. 
+* Complexity Free Energy disjoint pair - shown in dark green, these are designed oligos where the two indicated oligos have a free energy (ΔG) of annealing with each other that lies outside the z-score cutoff for the population of all oligo pairs that are not self or intended overlap pairs.
+* Complexity Free Energy overlap pair - shown in dark blue, these are designed oligos where the two indicated oligos have a free energy (ΔG) of annealing with each other that lies outside the z-score cutoff for the population of all intended overlapping oligo pairs. These are oligos that are intended to overlap via the design and that their free energy was sufficiently low, such that the intended anneling may not occur. This complexity type is not shown in the example above.
+
+### Sequence Complexity Parameters
+
+You'll notice that the parameters available for Sequence Complexity are similar to the Oligo Design parameters. This is because, at the moment, the repeat and GC parameters are fixed. The parameters shown allow you to simulate a naive oligo design and see which, if any, oligos or region of the sequence will have some likelyhood to cause mis-annealing events (high free energy complexity scores above). 
+
+### Sequence Complexity Interpretation
+
+For the complexity assessment shown in the image above, you can see that the oligos making up the repeat regions have high free energy disjoint pair complexity with each other, indicating that these will likely mis-anneal. Also shown is an oligo that has high free energy self pair complexity, indicating a self-affinity that occurs right at the spot containing a palindromic region. This implies that the oligo will likely anneal to itself (hairpin) or other oligos of the same sequence. 
+
+### Design Suggestions Based on Sequence Complexity
+
+At the moment, there are two options to work around sequence complexity. 
+
+1. If you have a hard requirement on keeping that specific DNA sequence, meaning changing the sequence is not an option, you can use the Minimize Complexity design type for Oligo Design. This design type uses the Complexity Free Energy information for a given design and attempts to minimize the number of oligos that may cause mis-annealing events. See the Minimize Compleity design type description above for more details on running this type of design.
+
+2. If you are only concerned about the protein sequence and the specific DNA sequence is of no major concern, you can use the Sequence Design page Minimize Complexity design type to help remove the complex regions from the sequence. This design type takes either protein or DNA and uses codon usage tables along with Complexity Free Energy information to minimize the regions with offending sequence complexity. See the Sequence Design section below for more information.
+
+## Sequence Permutation Generator
+
+
+
+
