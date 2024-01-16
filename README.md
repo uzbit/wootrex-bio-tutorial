@@ -55,12 +55,14 @@ This design type creates a basic oligo design with no optimizations or gaps. Oli
 ## Sequence Complexity
 
 Some DNA sequences of interest may contain characteristics that will cause a naive design and assembly to fail synthesis. Common causes are repeat regions, too high or too low GC content, or hairpins for example. These often result in truncated product, concatamers, or no product at all. Here, we term these types of sequence content 'complexity', in order to describe their affect on sequence synthesis difficulty. Using the Sequence Complexity tab, you can submit multiple DNA sequences for complexity assessment. Below is an example sequence showing all types of complexity that are assessed. 
+![Uploading complexity.svg…]()
 
-![Sequence Complexity Example](https://user-images.githubusercontent.com/2830915/207479837-17bea843-9a36-4dbd-905b-79120fe5bf03.png)
+![Sequence Complexity Example](https://github.com/uzbit/wootrex-bio-tutorial/assets/2830915/76ae9fbb-ff86-4037-b42a-cf1c06cf1bce)
 
 From top to bottom the types of complexity are:
 * Interspersed repeat regions - shown in light green, these are regions that share homology with each other and are likely to cause mis-annealing events during oligo assembly and PCR.
 * Palindromic repeat regions - shown in yellow, these are regions that could cause hairpin formations and are likely to cause oligos to become unavailable for expected annealing.
+* Tandem repeat regions - shown in pink, these are regions have repeating k-mers. Homopolymers are a special case of k=1 (minimum count of 7 in a row) while the maximum reported kmer is k=6 (minimum of 2 in a row). 
 * Low and high GC regions - shown in light blue and light red respectively, these are stretches of 40bp that have at most 30% (low) or at least 70% (high) GC content. High GC regions can cause issues with oligos finding their intended overlaps.
 * Complexity Free Energy self pair - shown in dark red, these are designed oligos that have a free energy of annealing with itself (ΔG) that lies outside the z-score cutoff for the population of other oligos with themselves. 
 * Complexity Free Energy disjoint pair - shown in dark green, these are designed oligos where the two indicated oligos have a free energy (ΔG) of annealing with each other that lies outside the z-score cutoff for the population of all oligo pairs that are not self or intended overlap pairs.
