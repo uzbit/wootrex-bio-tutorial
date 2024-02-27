@@ -55,7 +55,6 @@ This design type creates a basic oligo design with no optimizations or gaps. Oli
 ## Sequence Complexity
 
 Some DNA sequences of interest may contain characteristics that will cause a naive design and assembly to fail synthesis. Common causes are repeat regions, too high or too low GC content, or hairpins for example. These often result in truncated product, concatamers, or no product at all. Here, we term these types of sequence content 'complexity', in order to describe their affect on sequence synthesis difficulty. Using the Sequence Complexity tab, you can submit multiple DNA sequences for complexity assessment. Below is an example sequence showing all types of complexity that are assessed. 
-![Uploading complexity.svg…]()
 
 ![Sequence Complexity Example](https://github.com/uzbit/wootrex-bio-tutorial/assets/2830915/76ae9fbb-ff86-4037-b42a-cf1c06cf1bce)
 
@@ -89,6 +88,7 @@ At the moment, there are two options to work around sequence complexity.
 If you're designing libraries of DNA with variation across a specific sequence of interest, you may have already used Oligo Design to save on oligo costs by recycling oligos. As it turns out, some designs allow for creation of novel sequences to assay using oligos that you've already designed. This is where Sequence Permuation Generator comes in. Given a library design, you can submit that excel file, along with a list of sequence id's in that design file, to create a new set of unique sequences to assay using the same batch of oligos! We term this "oligo mining". It allows you to extract additional value out of library oligo designs that you already ordered or intend to order. 
 
 ![Crank Out Libraries Like A Boss](https://github.com/uzbit/wootrex-bio-tutorial/assets/2830915/8276736e-9d31-4278-9966-8b979dc77648)
+*NinthBio + teselagen at SynBioBeta 2023*
 
 ### Sequence Permutation Generator Parameters
 
@@ -101,6 +101,19 @@ The output of an SPG job will be a new design file containing the plate mapping 
 
 ## Sequence Design
 
+Let's say you have a set of protein sequences that you'd like to express, but you don't necessairly care about the specific DNA sequence. Choosing the "Minimize Complexity" Design Type on the Sequence Design page, will codon optimize your DNA sequences for those specific protein sequences in such a way to minimize issues when synthesizing the DNA sequences from oligos. You can also use specific codon usage tables, and set a list of restriction sites to avoid if you're going to be cloning these sequences later. Make sure to keep Use Static Seed **unchecked**.
+
+In order to maximize recycling for library designs, you may want to ensure that codon usages are identical across all sequences. This is because having identical codon usage for a given AA will result in identical bases for each position across all sequences, which will then allow for maximum recycling of oligos. In order to do this, reverse translate your protein sequences with Use Static Seed checked. Alternatively, if you already have your sequences in DNA, but want to ensure same codon usage, first traslate, and then reverse translate those results with the Use Static Seed **checked**.
+
+### Sequence Design Parameters
+
+* Input Design File(s) - one or more design excel files produced by Oligo Design containing the oligos and sequences you would like to mine for additional value.
+* Codon Usage Table - a dropdown allowing selection of common species codon usage tables, including "uniform" by default which gives equal probability to each codon for a given AA.
+* Design Type - the type of Sequence Design: Minimize Complexity (takes either DNA or protein and returns DNA), Reverse Translate (protein -> DNA), Translate (DNA -> protein).
+* Custom Kazusa Table Id - designate custom codon usage table for a specific species using Kazusa identifiers.
+* Sequence Design Name - designate a new name for the sequence design.
+* Avoid Restriction Sites - a comma separated list of restriction enzymes to specifically avoid when codon optimizing.
+* Use Static Seed - If checked, tells the algorithm to pick the most commonly used codon based on the given codon usage table for a specific amino acid and use that everytime for this design, otherwise it picks a codon with the probability described by the codon usage tables for every choice.
 
 
 
