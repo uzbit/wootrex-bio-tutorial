@@ -107,13 +107,26 @@ In order to maximize recycling for library designs, you may want to ensure that 
 
 ### Sequence Design Parameters
 
-* Input Design File(s) - one or more design excel files produced by Oligo Design containing the oligos and sequences you would like to mine for additional value.
+* Input Fasta File(s) - one or more fasta files containing your sequences of interest. These can be either protein or DNA sequences.
 * Codon Usage Table - a dropdown allowing selection of common species codon usage tables, including "uniform" by default which gives equal probability to each codon for a given AA.
 * Design Type - the type of Sequence Design: Minimize Complexity (takes either DNA or protein and returns DNA), Reverse Translate (protein -> DNA), Translate (DNA -> protein).
 * Custom Kazusa Table Id - designate custom codon usage table for a specific species using Kazusa identifiers.
 * Sequence Design Name - designate a new name for the sequence design.
 * Avoid Restriction Sites - a comma separated list of restriction enzymes to specifically avoid when codon optimizing.
 * Use Static Seed - If checked, tells the algorithm to pick the most commonly used codon based on the given codon usage table for a specific amino acid and use that everytime for this design, otherwise it picks a codon with the probability described by the codon usage tables for every choice.
+
+## Fragment Design
+
+If you have a larger sequence than the recommended max ~2kb for a one-pot Oligo Design assembly, it's useful to break this into multiple fragments that can then later be assembled into the full sequence. Fragment Design helps with this process in that it automatically finds any complex regions in the sequence that would cause a standard Oligo Design assembly to fail and splits the sequence into fragments that will minimize total assembly complexity. Additionally, you can specify specific cut locations with the Custom Cuts parameter, if you desire fragments be split at certain locations. The results zip file will contain a fasta with all the sequences fragments, and a GenBank with each sequences complexity assessment to allow you to interpret how the fragment cut locations were chosen.
+
+### Fragment Design Parameters
+
+* Input Fasta File(s) - one or more fasta files DNA sequences of interest. Specificially sequences larger than ~3kb.
+* Min Size - The smallest fragment size in base pairs. 
+* Target Size - The target fragment size in base pairs. 
+* Max Size - The largest fragment size in base pairs.
+* Max Fragments - The maximum number of fragments allowed in this design. This should be logically consistent with the size of the sequence and Max Size.
+* Custom Cuts - A file indicating per input sequence user specific locations to make fragment cut locations. This allows users to customize fragment breaks for whatever reason. These will always be chosen over the closest complexity cut location.
 
 
 
