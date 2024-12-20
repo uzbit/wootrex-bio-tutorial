@@ -94,8 +94,16 @@ If you're designing libraries of DNA with variation across a specific sequence o
 
 * Input Design File(s) - one or more design excel files produced by Oligo Design containing the oligos and sequences you would like to mine for additional value.
 * Permutation Design Name - designate a new name for the unique set of sequence permutations.
+
+There are currently two differen ways you can run SPG, the first is by knowing the set of sequence id's, for instance your experimental top hit sequences, or by using phylogenetic similarity to a given sequence. To select the latter options, check the Use Phylogenetic Similarity Selection checkbox. Otherwise the default parameters are as follows:
+
 * Sequence Id List - this is the set of sequences that you'd like to mine oligos from in order to create new sequences. Commonly, people choose sequences with hits showing promise from assays already performed.
 * Subsample Population - if the number of potential sequences generated is too high, use this parameter to evenly subsample the population generated.
+
+For the Phylogenetic Similarity Selection option the parameters are as follows:
+* Target Sequence Id - A single sequence id for which the N (Number of Related Sequences below) closest sequences in phylogenetic distance will be selected.
+* Number of Related Sequences - Number of sequences closest to the target sequence to include from the original design file given.
+* Max Hamming Distance Filter - A final filter after all sequence permutations are generated that allows one to select only sequence with less than or equal to this number of positional base pair differences between a given sequence and the target sequence. 
 
 The output of an SPG job will be a new design file containing the plate mapping information needed to create the new sequences.
 
