@@ -72,7 +72,7 @@ From top to bottom the types of complexity are:
 
 ### Sequence Complexity Parameters
 
-You'll notice that the parameters available for Sequence Complexity are similar to the Oligo Design parameters. This is because, at the moment, the repeat and GC parameters are fixed. The parameters shown allow you to simulate a naive oligo design and see which, if any, oligos or region of the sequence will have some likelyhood to cause mis-annealing events (high free energy complexity scores above). 
+You'll notice that the parameters available for Sequence Complexity are similar to the Oligo Design parameters. This is because, at the moment, the repeat and GC parameters are fixed. The parameters shown allow you to simulate a naive or gapped oligo design and see which, if any, oligos or region of the sequence will have some likelyhood to cause mis-annealing events (high free energy complexity scores above). 
 
 ### Sequence Complexity Interpretation
 
